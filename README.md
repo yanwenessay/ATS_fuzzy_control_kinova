@@ -1,4 +1,4 @@
-# ATS_kinova（以kinova gen 3 机械臂为示例）
+# ATS_fuzzy_control_kinova（以kinova gen 3 机械臂为示例）
 
 There are some free-model control (ATS control) for robot arm dynamics system, and it is applicable to low-speed control without any dynamic feedforward.
 
