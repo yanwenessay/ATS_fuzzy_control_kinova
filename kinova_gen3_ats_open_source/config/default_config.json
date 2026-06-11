@@ -1,0 +1,25 @@
+{
+  "run_duration": 20,
+  "u1_limit": 40.0,
+  "u2_max_torque": 40.0,
+  "u2_safety_torque": 5.0,
+  "axis_limits_deg": [170.0, 170.0, 170.0, 170.0, 170.0, 170.0, 170.0],
+  "axis_trajectory": [
+    {"offset_deg": 5.0, "amplitude_deg": 10.0, "frequency_hz": 0.2, "phase_offset": 0.0},
+    {"offset_deg": -5.0, "amplitude_deg": 10.0, "frequency_hz": 0.2, "phase_offset": 1.57079632679},
+    {"offset_deg": 5.0, "amplitude_deg": 10.0, "frequency_hz": 0.2, "phase_offset": 0.0},
+    {"offset_deg": -5.0, "amplitude_deg": 10.0, "frequency_hz": 0.2, "phase_offset": 1.57079632679},
+    {"offset_deg": 5.0, "amplitude_deg": 10.0, "frequency_hz": 0.2, "phase_offset": 0.0},
+    {"offset_deg": -5.0, "amplitude_deg": 10.0, "frequency_hz": 0.2, "phase_offset": 1.57079632679},
+    {"offset_deg": 5.0, "amplitude_deg": 10.0, "frequency_hz": 0.2, "phase_offset": 0.0}
+  ],
+  "axis_control_params": [
+    {"u1_init": 0.0, "u2_init": 0.0, "K1_init": 0.05, "K2_init": 0.05, "w1": 0.001, "w2": 0.001, "dag_deg": 1.1, "b1": 0.1, "b2": 0.01, "AF11_0": 0.2, "AF12_0": 0.0, "AF21_0": 0.5, "AF22_0": 0.2},
+    {"u1_init": 0.0, "u2_init": 0.0, "K1_init": 0.05, "K2_init": 0.11, "w1": 0.001, "w2": 0.001, "dag_deg": 1.1, "b1": 0.1, "b2": 0.01, "AF11_0": 0.2, "AF12_0": 0.0, "AF21_0": 0.2, "AF22_0": 0.1},
+    {"u1_init": 0.0, "u2_init": 0.0, "K1_init": 0.05, "K2_init": 0.05, "w1": 0.001, "w2": 0.001, "dag_deg": 1.3, "b1": 0.1, "b2": 0.01, "AF11_0": 0.6, "AF12_0": 0.0, "AF21_0": 1.0, "AF22_0": 0.6},
+    {"u1_init": 0.0, "u2_init": 0.0, "K1_init": 0.05, "K2_init": 0.05, "w1": 0.001, "w2": 0.001, "dag_deg": 1.0, "b1": 0.1, "b2": 0.01, "AF11_0": 0.3, "AF12_0": 0.0, "AF21_0": 1.0, "AF22_0": 0.5},
+    {"u1_init": 0.0, "u2_init": 0.0, "K1_init": 0.05, "K2_init": 0.05, "w1": 0.001, "w2": 0.001, "dag_deg": 1.3, "b1": 0.1, "b2": 0.01, "AF11_0": 0.1, "AF12_0": 0.0, "AF21_0": 1.0, "AF22_0": 0.1},
+    {"u1_init": 0.0, "u2_init": 0.0, "K1_init": 0.05, "K2_init": 0.05, "w1": 0.001, "w2": 0.001, "dag_deg": 1.2, "b1": 0.1, "b2": 0.01, "AF11_0": 0.1, "AF12_0": 0.0, "AF21_0": 1.0, "AF22_0": 0.1},
+    {"u1_init": 0.0, "u2_init": 0.0, "K1_init": 0.05, "K2_init": 0.05, "w1": 0.01, "w2": 0.001, "dag_deg": 1.8, "b1": 0.1, "b2": 0.01, "AF11_0": 0.1, "AF12_0": 0.0, "AF21_0": 0.1, "AF22_0": 0.05}
+  ]
+}
