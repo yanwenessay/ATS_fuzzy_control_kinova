@@ -114,20 +114,6 @@ kinova_joint_tracking_errors_<timestamp>/
 * 控制参数分析图；
 * RMS 误差、最大误差、平均绝对误差等统计信息。
 
-## 隐私说明
-
-本仓库不包含真实机械臂 IP、用户名、密码、现场网络信息或私有运行日志。
-
-请不要提交：
-
-```text
-config/local*.json
-运行日志
-生成的结果文件夹
-真实机器人或网络信息
-```
-
-
 
 ## License
 
