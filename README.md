@@ -4,6 +4,10 @@
 
 
 
+https://github.com/user-attachments/assets/bfaeb7f4-26dc-45a2-81a3-bbf3efeac4be
+
+
+
 https://ieeexplore.ieee.org/abstract/document/10416664/
 
 本仓库开源了我们 IEEE T-ASE 论文中自适应 T-S 模糊控制方法的多机器人验证代码。
