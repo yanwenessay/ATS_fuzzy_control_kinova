@@ -2,11 +2,7 @@
 
 # Adaptive T-S Fuzzy Control for Unknown-Structure Robotic Systems
 
-
-
-https://github.com/user-attachments/assets/bfaeb7f4-26dc-45a2-81a3-bbf3efeac4be
-
-
+https://github.com/user-attachments/assets/4b5c227d-b864-4628-8cd5-2459705045b5
 
 https://ieeexplore.ieee.org/abstract/document/10416664/
 
