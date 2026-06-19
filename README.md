@@ -1,119 +1,79 @@
-# ATS_fuzzy_control_kinova（以kinova gen 3 机械臂为示例）
+# 面向未知结构机器人系统的自适应 T-S 模糊控制开源项目
 
-There are some free-model control (ATS control) for robot arm dynamics system, and it is applicable to low-speed control without any dynamic feedforward.
+# Adaptive T-S Fuzzy Control for Unknown-Structure Robotic Systems
 
-这是一些ATS控制器设计方案对于机械臂动力学系统（python），适用于低速控制，不需要任何动态前馈。若有问题，请联系我，相关论文：
-1. Yan, Wen, et al. "Adaptive TS fuzzy control for an unknown structure system with a self-adjusting control accuracy." IEEE Transactions on Automation Science and Engineering 22 (2024): 944-957.
-2. Yan, Wen, Tao Zhao, and Edmond Q. Wu. "Prescribed-time fuzzy control for MIMO coupled systems with unknown structure and control direction: Application to robotic arm." IEEE Transactions on Automation Science and Engineering 22 (2024): 9013-9028.
 
-# Kinova Gen3 ATS 关节空间阻抗控制
 
-本仓库提供一个面向 Kinova Gen3 7 自由度机械臂的 ATS 自适应关节空间阻抗/力矩控制示例。
+https://ieeexplore.ieee.org/abstract/document/10416664/
 
-程序会先将机械臂移动到初始关节位置，然后执行 7 个关节的正弦轨迹跟踪，并在结束后生成跟踪误差和控制性能分析图。
+本仓库开源了我们 IEEE T-ASE 论文中自适应 T-S 模糊控制方法的多机器人验证代码。
+This repository provides open-source multi-robot validation codes for the adaptive T-S fuzzy control method proposed in our IEEE T-ASE paper.
 
-## 文件结构
+> **Adaptive T-S Fuzzy Control for an Unknown Structure System With a Self-Adjusting Control Accuracy**
+> W. Yan, T. Zhao, and X. Wang, *IEEE Transactions on Automation Science and Engineering*, vol. 22, pp. 944–957, 2025.
 
-```text
-kinova_gen3_ats_open_source/
-  ats_control_7dof_dynamic.py    # 主程序
-  control_main.py                # ATS 控制律
-  DiscreteIntegrator.py          # 离散积分器
-  ts_fuzzy_output.py             # TS 模糊输出
-  fuzzy_membership_fcn.py        # 模糊隶属度函数
-  fuzzyoutput.py                 # 模糊输出辅助函数
-  config/default_config.json     # 默认公开配置
-  requirements.txt
-```
+本仓库包含 Kinova Gen3、RealMan RM65-B 和达野 DY05S-600 等真实机器人实控代码，也包含 UR10e、RealMan 和 KUKA 等机器人在 Isaac Sim 高保真物理环境中的仿真验证代码。
+The repository includes real-robot control codes for Kinova Gen3, RealMan RM65-B, and DaYe DY05S-600, as well as Isaac Sim high-fidelity simulation codes for UR10e, RealMan, and KUKA robots.
 
-## 安全提醒
+本项目旨在支持自适应模糊控制方法的可复现研究、控制器对比实验以及多类型机器人平台上的实际部署。
+This project aims to support reproducible research, controller comparison, and practical deployment of adaptive fuzzy control methods on different robotic platforms.
 
-本程序会让真实机械臂进入低层力矩控制流程。运行前请确认：
+各子文件夹内均提供独立的 `README.md` 文件，用于说明对应机器人平台或仿真环境的具体配置方式、运行步骤和注意事项。
+Each subfolder provides an individual `README.md` file describing the specific environment configuration, running steps, and important notes for the corresponding robot platform or simulation environment.
 
-* 机械臂周围没有人员和障碍物；
-* 急停、示教器和安全限位可用；
-* 机械臂处于无 fault 状态；
-* 已根据自己的平台检查并调整配置参数；
-* 首次测试时建议调小 `run_duration`、`amplitude_deg` 和 `u2_max_torque`。
+## 仓库内容
 
-请在充分理解风险后使用本代码。
+## Repository Contents
 
-## 安装
+| 文件夹 / Folder               | 平台 / Platform                                                                  | 语言或环境 / Language or Environment |
+| -------------------------- | ------------------------------------------------------------------------------ | ------------------------------- |
+| `realman65b_control/`      | RealMan RM65-B 协作机器人 / RealMan RM65-B collaborative robot                      | Python                          |
+| `kinova_gen3_control/`     | Kinova Gen3 协作机器人 / Kinova Gen3 collaborative robot                            | Python                          |
+| `dy05s600_matlab_control/` | 达野 DY05S-600 工业机器人 / DaYe DY05S-600 industrial robot                           | MATLAB                          |
+| `isaac_sim_validation/`    | UR10e、RealMan 和 KUKA 高保真仿真 / UR10e, RealMan, and KUKA high-fidelity simulation | Isaac Sim                       |
 
-建议将本目录放在 Kinova Kortex Python API 的 examples 目录下，例如：
+## 主要特点
 
-```text
-api_python/examples/kinova_gen3_ats_open_source/
-```
+## Features
 
-安装依赖：
+* 提供面向未知结构机器人系统的自适应 T-S 模糊控制实现。
+  Provides an adaptive T-S fuzzy control implementation for unknown-structure robotic systems.
 
-```bash
-python3 -m pip install -r requirements.txt
-```
+* 支持协作机器人和工业机器人上的真实实控验证。
+  Supports real-robot validation on both collaborative and industrial manipulators.
 
-如果已经安装好 `kortex_api`，通常只需安装：
+* 提供带有物理世界模型的 Isaac Sim 高保真仿真验证。
+  Provides Isaac Sim high-fidelity simulation validation with physics-based world models.
 
-```bash
-python3 -m pip install numpy matplotlib
-```
+* 可作为自适应模糊控制、鲁棒控制和机器人控制方法的对比基线。
+  Can be used as a comparison baseline for adaptive fuzzy control, robust control, and robotic manipulator control.
 
-## 运行
+## 相关 ATS 控制工作
 
-不要将机械臂 IP、用户名或密码写入仓库。运行时使用占位符：
+## Related ATS-Based Works
 
-```bash
-python3 ats_control_7dof_dynamic.py --ip <YOUR_ROBOT_IP> -u <YOUR_USERNAME> -p <YOUR_PASSWORD>
-```
+本仓库主要对应上述 IEEE T-ASE 论文，相关 ATS 控制框架也可参考以下工作。
+This repository is mainly associated with the IEEE T-ASE paper above, while the related ATS-based control framework can also be found in the following works.
 
-程序启动后：
+* W. Yan, T. Zhao, B. Niu, X. Wang, and X. Xie, “Nonsingular Adaptive T-S Fuzzy Model-Based Control for Constrained Unknown-Structure Heterogeneous Multi-Agent Systems With a Predefined Accuracy,” *Information Sciences*, 2025.
+* W. Yan, T. Zhao, and E. Q. Wu, “Prescribed-Time Fuzzy Control for MIMO Coupled Systems With Unknown Structure and Control Direction: Application to Robotic Arm,” *IEEE Transactions on Automation Science and Engineering*, 2025.
 
-```text
-s = 开始控制
-q = 退出程序
-Ctrl+C = 中断并尝试保存已有数据
-```
+## 引用
 
-## 配置
+## Citation
 
-复制默认配置文件，并在本地修改：
+如果本仓库或其中的机器人验证代码对您的研究有帮助，请引用我们的主要论文。
+If this repository or the provided robotic validation examples help your research, please cite our main paper.
 
-```bash
-cp config/default_config.json config/local_config.json
-```
 
-使用本地配置运行：
-
-```bash
-python3 ats_control_7dof_dynamic.py \
-  --config config/local_config.json \
-  --ip <YOUR_ROBOT_IP> -u <YOUR_USERNAME> -p <YOUR_PASSWORD>
-```
-
-常用配置项包括：
-
-* `run_duration`：控制运行时间；
-* `u1_limit`：中间控制量限幅；
-* `u2_max_torque`：正常控制力矩限幅；
-* `u2_safety_torque`：安全模式力矩限幅；
-* `axis_limits_deg`：7 个关节的软限位；
-* `axis_trajectory`：各关节正弦参考轨迹参数；
-* `axis_control_params`：各关节 ATS 控制参数。
-
-## 输出结果
-
-运行结束后，会生成类似如下结果目录：
-
-```text
-kinova_joint_tracking_errors_<timestamp>/
-```
-
-其中包括：
-
-* 各关节跟踪误差图；
-* 控制参数分析图；
-* RMS 误差、最大误差、平均绝对误差等统计信息。
-
+@article{yan2025adaptive,
+  title   = {Adaptive T-S Fuzzy Control for an Unknown Structure System With a Self-Adjusting Control Accuracy},
+  author  = {Yan, W. and Zhao, T. and Wang, X.},
+  journal = {IEEE Transactions on Automation Science and Engineering},
+  volume  = {22},
+  pages   = {944--957},
+  year    = {2025}
+}
 
 ## License
 
